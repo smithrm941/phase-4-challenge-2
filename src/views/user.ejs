@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vinyl : <%= album.title %></title>
+  <title>Vinyl : <%= user.name %></title>
   <link rel="stylesheet" type="text/css" href="/style.css">
   <script type="text/javascript" src="/script.js"></script>
 </head>
 <body>
+  <h5><%= user.name %></h5>
+  <h5>Email <%= user.email %></h5>
+  <h5>Date Joined <%= user.join_date.toDateString().substring(0, 15) %></h5>
 
-  <h1><%= album.title %></h1>
-  <em>by <%= album.artist %></em>
+  <br>
 
   <h2>Reviews</h2>
-
   <% if (reviews.length === 0) { %>
 
     <h5>No reviews yet!</h5>
@@ -30,6 +31,8 @@
     </div>
 
   <%}%>
+
+
 
 </body>
 </html>
