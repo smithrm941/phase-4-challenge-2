@@ -29,6 +29,21 @@ function getRecentReviews(cb) {
             3`, [], cb)
 }
 
+function getReviewsByAlbum(albumID, cb) {
+  _query(`SELECT
+            reviews.content, reviews.review_date, albums.title AS album_reviewed, users.name AS author
+          FROM
+            reviews, albums, users
+          WHERE
+            albums.id = $1
+          AND
+            users.id = reviews.author
+          AND
+            albums.id = reviews.album
+          ORDER BY
+            review_date DESC`, [albumID], cb)
+}
+
 function _query(sql, variables, cb) {
   console.log('QUERY ->', sql.replace(/[\n\s]+/g, ' '), variables)
 
@@ -47,5 +62,6 @@ function _query(sql, variables, cb) {
 module.exports = {
   getAlbums,
   getAlbumsByID,
-  getRecentReviews
+  getRecentReviews,
+  getReviewsByAlbum
 }

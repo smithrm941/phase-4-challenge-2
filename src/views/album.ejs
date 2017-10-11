@@ -12,7 +12,27 @@
 
   <h2>Reviews</h2>
 
-  <!-- TODO: implement album reviews -->
+  <% if (reviews.length === 0) { %>
+
+    <h5>No reviews yet!</h5>
+
+  <% } else { %>
+
+    <div class="review-list">
+      <% reviews.forEach(function(review) { %>
+        <div>
+          <h5><%= review.album_reviewed %></h5>
+          <h5><%= review.content %></h5>
+          <h5><%= review.review_date.toDateString().substring(0, 15) %></h5>
+          <span><%= review.author %></span>
+        </div>
+      <% }) %>
+    </div>
+
+  <%}%>
+
+
+
 
 </body>
 </html>

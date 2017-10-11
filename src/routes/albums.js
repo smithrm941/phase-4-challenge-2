@@ -9,7 +9,11 @@ albums.get('/:albumID', (req, res) => {
       res.status(500).render('error', {error})
     } else {
       const album = albums[0]
-      res.render('album', {album})
+      console.log('what album is this????', album)
+      db.getReviewsByAlbum(album.id, (error, reviews) => {
+        console.log('are we getting the reviews????', reviews)
+        res.render('album', {album, reviews})
+      })
     }
   })
 })
