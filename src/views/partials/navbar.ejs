@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">
+  <ul>
+    <li><h4 class="home-link"><a href="/">Vinyl</a></h4></li>
+
+    <% if (user) { %>
+
+      <div class="right-side-links">
+        <li class="first-right-link"><a href="/users/<%=user.id%>">Profile</a></li>
+        <li class="second-right-link"><a href="/signout">Sign Out</a></li>
+      </div>
+
+    <% } else if (!user) { %>
+
+      <div class="right-side-links">
+        <li class="first-right-link"><a href="/signup">Sign Up</a></li>
+        <li class="second-right-link"><a href="/signin">Sign In</a></li>
+      </div>
+
+    <% } %>
+
+  </ul>
+</nav>

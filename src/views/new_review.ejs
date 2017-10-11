@@ -2,14 +2,17 @@
 <html>
 <head>
   <title>Vinyl : New Review for <%= album.title %></title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
+  <%- include ./partials/scripts_style.ejs %>
 </head>
 <body>
-<h1>New Review for <%= album.title %></h1>
-<form class="new-review-form">
-  <textarea class="new-review-box" rows="25" cols="50"></textarea>
-  <button type="submit" class="submit-review-button">Submit</button>
-</form>
+  <%- include ./partials/navbar.ejs %>
+
+  <h1>New Review for <%= album.title %></h1>
+
+  <form class="new-review-form" action="/albums/<%=album.id %>/reviews/new" method="POST">
+    <textarea class="new-review-box" rows="25" cols="50" name="content"></textarea>
+    <button type="submit" class="submit-review-button">Submit</button>
+  </form>
+
 </body>
 </html>

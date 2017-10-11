@@ -2,13 +2,16 @@
 <html>
 <head>
   <title>Vinyl : <%= album.title %></title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
+  <%- include ./partials/scripts_style.ejs %>
 </head>
 <body>
+  <%- include ./partials/navbar.ejs %>
 
   <h1><%= album.title %></h1>
   <em>by <%= album.artist %></em>
+  <form action="/albums/<%=album.id%>/reviews/new" method="GET">
+    <button type="submit">Add Review</button>
+  </form>
 
   <h2>Reviews</h2>
 

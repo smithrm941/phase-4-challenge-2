@@ -2,10 +2,10 @@
 <html>
 <head>
   <title>Vinyl</title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
+  <%- include ./partials/scripts_style.ejs %>
 </head>
 <body>
+  <%- include ./partials/navbar.ejs %>
 
   <h1>ERROR</h1>
   <h2><%= error.message %></h2>

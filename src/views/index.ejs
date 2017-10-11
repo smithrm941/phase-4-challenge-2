@@ -2,10 +2,10 @@
 <html>
 <head>
   <title>Vinyl</title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
+  <%- include ./partials/scripts_style.ejs %>
 </head>
 <body>
+  <%- include ./partials/navbar.ejs %>
 
   <h1>Vinyl</h1>
 
@@ -21,7 +21,7 @@
   </div>
 
   <h2>Recent Reviews</h2>
-  
+
   <div class="review-list">
     <% reviews.forEach(function(review) { %>
       <div>

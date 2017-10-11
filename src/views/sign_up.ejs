@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up%></title>
+  <%- include ./partials/scripts_style.ejs %>
+</head>
+<body>
+  <%- include ./partials/navbar.ejs %>
+
+  <h1>Sign Up for Vinyl</h1>
+
+  <form class="sign-up-form" action="/signup" method="POST">
+    <h4>Name</h4><input type="text" name="name"></input>
+    <h4>Email</h4><input type="text" name="email"></input>
+    <h4>Password</h4><input type="password" name="password"></input>
+    <button type="submit" class="sign-up-button">Submit</button>
+  </form>
+
+</body>
+</html>

@@ -6,6 +6,7 @@ const client = new pg.Client(connectionString)
 
 client.connect()
 
+//home page queries:
 function getAlbums(cb) {
   _query('SELECT * FROM albums', [], cb)
 }
@@ -29,6 +30,7 @@ function getRecentReviews(cb) {
             3`, [], cb)
 }
 
+//album page queries:
 function getReviewsByAlbum(albumID, cb) {
   _query(`SELECT
             reviews.content, reviews.review_date, albums.title AS album_reviewed, users.name AS author
@@ -44,6 +46,16 @@ function getReviewsByAlbum(albumID, cb) {
             review_date DESC`, [albumID], cb)
 }
 
+function addReview(reviewData, cb) {
+  _query(`INSERT INTO
+            reviews (content, author, album)
+          VALUES
+            ($1, $2, $3)
+          RETURNING
+            *`, [reviewData.content, reviewData.author, reviewData.album], cb)
+}
+
+//user page queries:
 function getUsersByID(userID, cb) {
   _query('SELECT * FROM users WHERE id = $1', [userID], cb)
 }
@@ -61,6 +73,27 @@ function getReviewsByUser(userID, cb) {
             albums.id = reviews.album
           ORDER BY
             review_date DESC`, [userID], cb)
+}
+
+//authentication queries:
+function signUp(userData, cb) {
+  _query(`INSERT INTO
+            users (name, email, password)
+          VALUES
+            ($1, $2, $3)
+          RETURNING
+            *`, [userData.name, userData.email, userData.password], cb)
+}
+
+function signIn(userData, cb) {
+  _query(`SELECT
+            *
+          FROM
+            users
+          WHERE
+            email = $1
+          AND
+            password = $2`, [userData.email, userData.password], cb)
 }
 
 function _query(sql, variables, cb) {
@@ -83,6 +116,9 @@ module.exports = {
   getAlbumsByID,
   getRecentReviews,
   getReviewsByAlbum,
+  addReview,
   getUsersByID,
-  getReviewsByUser
+  getReviewsByUser,
+  signUp,
+  signIn
 }

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vinyl : <%= user.name %></title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
+  <title>Vinyl : <%= profile.name %></title>
+  <%- include ./partials/scripts_style.ejs %>
 </head>
 <body>
-  <h5><%= user.name %></h5>
-  <h5>Email <%= user.email %></h5>
-  <h5>Date Joined <%= user.join_date.toDateString().substring(0, 15) %></h5>
+  <%- include ./partials/navbar.ejs %>
+
+  <h5><%= profile.name %></h5>
+  <h5>Email <%= profile.email %></h5>
+  <h5>Date Joined <%= profile.join_date.toDateString().substring(0, 15) %></h5>
 
   <br>
 

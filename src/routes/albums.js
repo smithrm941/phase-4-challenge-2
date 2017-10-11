@@ -10,7 +10,7 @@ albums.get('/:albumID', (req, res) => {
     } else {
       const album = albums[0]
       db.getReviewsByAlbum(album.id, (error, reviews) => {
-        res.render('album', {album, reviews})
+        res.render('album', {album, reviews, user: req.session.user})
       })
     }
   })
@@ -24,14 +24,38 @@ albums.get('/:albumID/reviews/new', (req, res) => {
       res.status(500).render('error', {error})
     } else {
       const album = albums[0]
-      console.log('what album is this????', album)
-      //placeholder until sign-in is added:
-      res.render('new_review', {album})
-      // db.addNewReview(album.id, (error, reviews) => {
-      //   res.render('new_review', {album, reviews})
-      // })
+      res.render('new_review', {album, user: req.session.user})
     }
   })
 })
+
+albums.post('/:albumID/reviews/new', (req, res) => {
+  const albumID = req.params.albumID
+
+  const reviewData = {
+    content: req.body.content,
+    author: req.session.user.id,
+    album: req.params.albumID,
+  }
+  
+  db.addReview(reviewData, (error, review) => {
+    if (error) {
+      res.status(500).render('error', {error})
+    } else {
+      console.log('Is this the new reviewwww????', review)
+
+      console.log('am I getting the review data at least????', reviewData)
+      res.redirect(`/albums/${albumID}`)
+    }
+  })
+
+
+})
+
+//Use a delete review query in a post route here::::
+
+
+
+
 
 module.exports = albums
