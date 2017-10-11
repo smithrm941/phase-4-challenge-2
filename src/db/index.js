@@ -62,7 +62,7 @@ function getUsersByID(userID, cb) {
 
 function getReviewsByUser(userID, cb) {
   _query(`SELECT
-            reviews.*, reviews.review_date, albums.title AS album_reviewed, users.name AS author
+            reviews.*, reviews.review_date, albums.title AS album_reviewed, users.name AS author_name
           FROM
             reviews, albums, users
           WHERE
