@@ -6,7 +6,13 @@ auth.get('/', (req, res) => {
     if (error) {
       res.status(500).render('error', {error})
     } else {
-      res.render('index', {albums})
+      db.getRecentReviews((error, reviews) => {
+        if (error) {
+          res.status(500).render('error', {error})
+        } else {
+          res.render('index', {albums, reviews})
+        }
+      })
     }
   })
 })

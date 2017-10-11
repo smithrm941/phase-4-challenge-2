@@ -20,5 +20,16 @@
     <% }) %>
   </div>
 
+  <h2>Recent Reviews</h2>
+  <div class="review-list">
+    <% reviews.forEach(function(review) { %>
+      <div>
+        <h5><%= review.album_reviewed %></h5>
+        <h5><%= review.content %></h5>
+        <span><%= review.author %></span>
+      </div>
+    <% }) %>
+  </div>
+
 </body>
 </html>
