@@ -1,0 +1,7 @@
+<% reviews.forEach(function(review) { %>
+    <h5 class="album-reviewed col-md-8"><a href="/albums/<%=review.album %>"><%= review.album_reviewed %></a></h5>
+    <h5 class="review-date"><%= review.review_date.toDateString().substring(0, 15) %></h5>
+    <h5 class="review-content"><%= review.content %></h5>
+  <br>
+  <br>
+<% }) %>

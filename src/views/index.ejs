@@ -6,12 +6,13 @@
 </head>
 <body>
   <%- include ./partials/navbar.ejs %>
+  <img src="http://ajournalofmusicalthings.com/wp-content/uploads/Record-collection.jpg" width="98.7%" height="275px"/>
+  <br>
+  <br>
 
-  <h1>Vinyl</h1>
-
-  <h2>Records</h2>
-
-  <div class="album-list">
+  <div class="album-list col-md-4">
+    <h2>Records</h2>
+    <br>
     <% albums.forEach(function(album) { %>
       <div>
         <h5><a href="/albums/<%= album.id %>"><%= album.title %></a></h5>
@@ -20,16 +21,10 @@
     <% }) %>
   </div>
 
-  <h2>Recent Reviews</h2>
-
-  <div class="review-list">
-    <% reviews.forEach(function(review) { %>
-      <div>
-        <h5><%= review.album_reviewed %></h5>
-        <h5><%= review.content %></h5>
-        <span><%= review.author %></span>
-      </div>
-    <% }) %>
+  <div class="recent-review-list col-md-8">
+    <h2>Recent Reviews</h2>
+    <br>
+    <%- include ./partials/recent_review_list.ejs %>
   </div>
 
 </body>

@@ -17,7 +17,7 @@ function getAlbumsByID(albumID, cb) {
 
 function getRecentReviews(cb) {
   _query(`SELECT
-            reviews.*, albums.title AS album_reviewed, users.name AS author
+            reviews.*, albums.title AS album_reviewed, users.name AS author_name
           FROM
             reviews, albums, users
           WHERE
@@ -33,7 +33,7 @@ function getRecentReviews(cb) {
 //album page queries:
 function getReviewsByAlbum(albumID, cb) {
   _query(`SELECT
-            reviews.content, reviews.review_date, albums.title AS album_reviewed, users.name AS author
+            reviews.*, albums.id, reviews.review_date, albums.title AS album_reviewed, users.name AS author_name
           FROM
             reviews, albums, users
           WHERE
@@ -62,7 +62,7 @@ function getUsersByID(userID, cb) {
 
 function getReviewsByUser(userID, cb) {
   _query(`SELECT
-            reviews.content, reviews.review_date, albums.title AS album_reviewed, users.name AS author
+            reviews.*, reviews.review_date, albums.title AS album_reviewed, users.name AS author
           FROM
             reviews, albums, users
           WHERE

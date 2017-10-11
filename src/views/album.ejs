@@ -7,32 +7,32 @@
 <body>
   <%- include ./partials/navbar.ejs %>
 
+<div class="album-page-title">
   <h1><%= album.title %></h1>
   <em>by <%= album.artist %></em>
-  <form action="/albums/<%=album.id%>/reviews/new" method="GET">
-    <button type="submit">Add Review</button>
-  </form>
+</div>
+<br>
 
-  <h2>Reviews</h2>
 
-  <% if (reviews.length === 0) { %>
+  <div class="album-review-list">
 
-    <h5>No reviews yet!</h5>
+      <h2 class="album-review-list-title col-md-10">Reviews</h2>
 
-  <% } else { %>
+      <form class="new-review-page-button" action="/albums/<%=album.id%>/reviews/new" method="GET">
+        <button type="submit">Add Review</button>
+      </form>
+      <br>
+      <br>
+    <% if (reviews.length === 0) { %>
 
-    <div class="review-list">
-      <% reviews.forEach(function(review) { %>
-        <div>
-          <h5><%= review.album_reviewed %></h5>
-          <h5><%= review.content %></h5>
-          <h5><%= review.review_date.toDateString().substring(0, 15) %></h5>
-          <span><%= review.author %></span>
-        </div>
-      <% }) %>
-    </div>
+      <h5 class="col-md-8">No reviews yet!</h5>
 
-  <%}%>
+    <% } else { %>
+
+        <%- include ./partials/album_review_list.ejs %>
+
+    <%}%>
+  </div>
 
 </body>
 </html>

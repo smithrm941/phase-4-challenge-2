@@ -15,10 +15,59 @@ li {
   float: left;
 }
 
+.navbar {
+  height: 40px;
+}
+
 .right-side-links {
   float: right;
 }
 
 .first-right-link {
   margin-right: 20px;
+}
+
+.album-list {
+  float: left;
+}
+
+.recent-review-list {
+  float: right;
+}
+
+.album-page-title {
+  text-align: center;
+}
+
+.album-review-list {
+  padding-left: 190px;
+  padding-right: 190px;
+}
+
+.album-review-list-title {
+  display: inline-block;
+}
+
+.new-review-page-button {
+  display: inline-block;
+}
+
+.album-reviewed {
+  display: inline-block;
+}
+
+.review-date {
+  display: inline-block;
+}
+
+.review-content {
+  margin-left: 15px;
+}
+
+.space-before-author {
+  display: inline-block;
+}
+
+.review-author {
+  display: inline-block;
 }

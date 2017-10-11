@@ -7,31 +7,29 @@
 <body>
   <%- include ./partials/navbar.ejs %>
 
-  <h5><%= profile.name %></h5>
-  <h5>Email <%= profile.email %></h5>
-  <h5>Date Joined <%= profile.join_date.toDateString().substring(0, 15) %></h5>
+  <div class="user-page-title">
+    <h1><%= profile.name %></h1>
+    <h3>Email <%= profile.email %></h3>
+    <h3>Date Joined <%= profile.join_date.toDateString().substring(0, 15) %></h3>
+  </div>
 
   <br>
 
-  <h2>Reviews</h2>
-  <% if (reviews.length === 0) { %>
+  <div class="album-review-list">
 
-    <h5>No reviews yet!</h5>
+      <h2 class="album-review-list-title col-md-10">Reviews</h2>
+      <br>
+      <br>
+    <% if (reviews.length === 0) { %>
 
-  <% } else { %>
+      <h5 class="col-md-8">No reviews yet!</h5>
 
-    <div class="review-list">
-      <% reviews.forEach(function(review) { %>
-        <div>
-          <h5><%= review.album_reviewed %></h5>
-          <h5><%= review.content %></h5>
-          <h5><%= review.review_date.toDateString().substring(0, 15) %></h5>
-          <span><%= review.author %></span>
-        </div>
-      <% }) %>
-    </div>
+    <% } else { %>
 
-  <%}%>
+        <%- include ./partials/user_review_list.ejs %>
+
+    <%}%>
+  </div>
 
 </body>
 </html>
