@@ -25,10 +25,9 @@ auth.post('/signup', (req, res) => {
   const userData = req.body
   const {name, email, password} = userData
   db.signUp(userData, (error, newUser) => {
-    console.log('who is this new User???', newUser)
     const user = newUser[0]
     req.session.user = user
-    res.redirect('/')
+    res.redirect(`/users/${user.id}`)
   })
 })
 
@@ -42,7 +41,7 @@ auth.post('/signin', (req, res) => {
   db.signIn(userData, (error, signedInUser) => {
     const user = signedInUser[0]
     req.session.user = user
-    res.redirect('/')
+    res.redirect(`/users/${user.id}`)
   })
 })
 
