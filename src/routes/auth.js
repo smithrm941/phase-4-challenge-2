@@ -18,7 +18,7 @@ auth.get('/', (req, res) => {
 })
 
 auth.get('/signup', (req, res) => {
-  res.render('sign_up')
+  res.render('sign_up', {user: null})
 })
 
 auth.post('/signup', (req, res) => {
@@ -33,7 +33,7 @@ auth.post('/signup', (req, res) => {
 })
 
 auth.get('/signin', (req, res) => {
-  res.render('sign_in')
+  res.render('sign_in', {user: null})
 })
 
 auth.post('/signin', (req, res) => {

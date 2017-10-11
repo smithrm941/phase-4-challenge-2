@@ -44,6 +44,22 @@ li {
   padding-right: 190px;
 }
 
+.profile-pic {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-page-title {
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: middle;
+}
+
+.user-review-list {
+  padding-left: 210px;
+  padding-right: 180px;
+}
+
 .album-review-list-title {
   display: inline-block;
 }
@@ -70,4 +86,38 @@ li {
 
 .review-author {
   display: inline-block;
+}
+
+.fa-trash {
+  margin-left: 40px;
+}
+
+.new-review-form-title {
+  padding-left: 200px;
+}
+
+.new-review-form {
+  padding-left: 250px;
+  padding-right: 200px;
+}
+
+.submit-review-button {
+  float: right;
+  margin-right: 118px;
+}
+
+.authentication-form-title {
+  text-align: center;
+}
+
+.authentication-form {
+  text-align: center;
+}
+
+.authentication-form label {
+  width: 75px;
+}
+
+.authentication-button {
+  margin-left: 182px;
 }

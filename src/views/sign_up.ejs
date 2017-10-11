@@ -6,14 +6,25 @@
 </head>
 <body>
   <%- include ./partials/navbar.ejs %>
+  <br>
 
-  <h1>Sign Up for Vinyl</h1>
-
-  <form class="sign-up-form" action="/signup" method="POST">
-    <h4>Name</h4><input type="text" name="name"></input>
-    <h4>Email</h4><input type="text" name="email"></input>
-    <h4>Password</h4><input type="password" name="password"></input>
-    <button type="submit" class="sign-up-button">Submit</button>
+  <h1 class="authentication-form-title">Sign Up for Vinyl</h1>
+  <br>
+  <br>
+  <form class="authentication-form" action="/signup" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name"></input>
+    <br>
+    <br>
+    <label for="email">Email</label>
+    <input type="text" name="email"></input>
+    <br>
+    <br>
+    <label for="password">Password</label>
+    <input type="text" name="password"></input>
+    <br>
+    <br>
+    <button type="submit" class="authentication-button">Submit</button>
   </form>
 
 </body>
