@@ -12,18 +12,38 @@ albums.get('/:albumID', (req, res) => {
     } else {
 
       const album = albums[0]
+      if (album) {
+        db.getReviewsByAlbum(album.id, (error, reviews) => {
+          if (error) {
 
-      db.getReviewsByAlbum(album.id, (error, reviews) => {
-        if (error) {
+            res.status(500).render('error', {error, user: req.session.user})
 
-          res.status(500).render('error', {error, user: req.session.user})
+          } else {
 
-        } else {
+            res.render('album', {album, reviews, user: req.session.user, cancelToAlbumPage: true, cancelToUserPage: false})
 
-          res.render('album', {album, reviews, user: req.session.user})
+          }
+        })
+      } else {
+        res.status(404).render('not_found', {user: req.session.user})
+      }
+    }
+  })
+})
 
-        }
-      })
+albums.post('/:albumID/reviews/delete/:reviewID', (req, res) => {
+  const albumID = req.params.albumID
+  const reviewID = req.params.reviewID
+  db.deleteReview(reviewID, (error, deletedReview) => {
+    if (error) {
+
+      res.status(500).render('error', {error, user: req.session.user})
+
+    } else {
+
+      const {albumID} = req.params
+      res.redirect(`/albums/${albumID}`)
+
     }
   })
 })

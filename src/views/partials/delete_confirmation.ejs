@@ -1,0 +1,31 @@
+<div id="modal" class="modal">
+
+  <div class="modal-content">
+    <% if(cancelToAlbumPage){%>
+
+      <form action = "/albums/<%=review.album_id%>/reviews/delete/<%=review.id%>" method="POST">
+        <h3>Are you sure you want to delete your review for <%=review.album_reviewed %>?</h3>
+        <button type="Submit" class="delete-review">Confirm</button>
+      </form>
+      <br>
+      <form action = "/albums/<%=review.album_id%>" method="GET">
+        <button class="cancel-delete">Cancel</button>
+      </form>
+
+    <%} else if (cancelToUserPage) {%>
+
+        <form action = "/users/<%=review.author%>/reviews/delete/<%=review.id%>" method="POST">
+          <h3>Are you sure you want to delete your review for <%=review.album_reviewed %>?</h3>
+          <button type="Submit" class="delete-review">Confirm</button>
+        </form>
+        <br>
+        <form action = "/users/<%=review.author%>" method="GET">
+          <button class="cancel-delete">Cancel</button>
+        </form>
+
+
+
+    <%}%>
+
+  </div>
+</div>

@@ -24,7 +24,12 @@
   <div class="recent-review-list col-md-8">
     <h2>Recent Reviews</h2>
     <br>
-    <%- include ./partials/recent_review_list.ejs %>
+    <% if (reviews.length === 0) { %>
+      <h5>No reviews yet! Want to add a review? Click on an album title to get started.</h5>
+    <%}else{%>
+      <%- include ./partials/recent_review_list.ejs %>
+    <%}%>
+
   </div>
 
 </body>

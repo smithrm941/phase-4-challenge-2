@@ -33,7 +33,7 @@ function getRecentReviews(cb) {
 //album page queries:
 function getReviewsByAlbum(albumID, cb) {
   _query(`SELECT
-            reviews.*, albums.id, reviews.review_date, albums.title AS album_reviewed, users.name AS author_name
+            reviews.*, albums.id AS album_id, reviews.review_date, albums.id AS album_id, albums.title AS album_reviewed, users.name AS author_name
           FROM
             reviews, albums, users
           WHERE
@@ -55,6 +55,16 @@ function addReview(reviewData, cb) {
             *`, [reviewData.content, reviewData.author, reviewData.album], cb)
 }
 
+//album AND user page queries:
+function deleteReview(id, cb) {
+  _query(`DELETE FROM
+            reviews
+          WHERE
+            id = $1
+          RETURNING
+            *;`, [id], cb)
+}
+
 //user page queries:
 function getUsersByID(userID, cb) {
   _query('SELECT * FROM users WHERE id = $1', [userID], cb)
@@ -62,7 +72,7 @@ function getUsersByID(userID, cb) {
 
 function getReviewsByUser(userID, cb) {
   _query(`SELECT
-            reviews.*, reviews.review_date, albums.title AS album_reviewed, users.name AS author_name
+            reviews.*, reviews.review_date, albums.id AS album_id, albums.title AS album_reviewed, users.name AS author_name
           FROM
             reviews, albums, users
           WHERE
@@ -126,6 +136,7 @@ module.exports = {
   getRecentReviews,
   getReviewsByAlbum,
   addReview,
+  deleteReview,
   getUsersByID,
   getReviewsByUser,
   signUp,

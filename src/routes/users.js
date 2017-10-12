@@ -13,17 +13,42 @@ users.get('/:userID', (req, res) => {
 
       const profile = users[0]
 
-      db.getReviewsByUser(profile.id, (error, reviews) => {
-        if (error) {
+      if(profile) {
+        
+        db.getReviewsByUser(profile.id, (error, reviews) => {
+          if (error) {
 
-          res.status(500).render('error', {error, user: req.session.user})
+            res.status(500).render('error', {error, user: req.session.user})
 
-        } else {
+          } else {
 
-          res.render('user', {profile, reviews, user: req.session.user})
+            res.render('user', {profile, reviews, user: req.session.user, cancelToUserPage: true, cancelToAlbumPage: false})
 
-        }
-      })
+          }
+        })
+
+      } else {
+
+        res.status(404).render('not_found', {user: req.session.user})
+
+      }
+    }
+  })
+})
+
+users.post('/:userID/reviews/delete/:reviewID', (req, res) => {
+  const {userID, reviewID} = req.params
+
+  db.deleteReview(reviewID, (error, deletedReview) => {
+    if (error) {
+
+      res.status(500).render('error', {error, user: req.session.user})
+
+    } else {
+
+      const {userID} = req.params
+      res.redirect(`/users/${userID}`)
+
     }
   })
 })
