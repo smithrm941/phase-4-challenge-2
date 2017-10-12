@@ -69,12 +69,12 @@ albums.post('/:albumID/reviews/new', (req, res) => {
 
       }
     })
-    
+
   } else {
     db.addReview(reviewData, (error, review) => {
       if (error) {
 
-        res.status(500).render('error', {error})
+        res.status(500).render('error', {error, user: req.session.user})
 
       } else {
 

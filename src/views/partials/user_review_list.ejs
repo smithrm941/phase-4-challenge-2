@@ -1,11 +1,12 @@
 <% reviews.forEach(function(review) { %>
+  <div class="individual-review">
     <h5 class="album-reviewed col-md-8"><a href="/albums/<%=review.album %>"><%= review.album_reviewed %></a></h5>
-    <h5 class="review-date"><%= review.review_date.toDateString().substring(0, 15) %>
-    <% if(user.id === review.author) { %>
-      <span><i class="fa fa-trash"></i></span>
-    <% } %>
-    </h5>
+    <h5 class="review-date"><%= review.review_date.toDateString().substring(0, 15) %></h5>
+      <% if(user.id === review.author) { %>
+        <span><button class="fa fa-trash"></button></span>
+      <% } %>
     <h5 class="review-content"><%= review.content %></h5>
-  <br>
-  <br>
+    <br>
+    <br>
+  </div>
 <% }) %>

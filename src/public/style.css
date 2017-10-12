@@ -88,8 +88,13 @@ li {
   display: inline-block;
 }
 
+.review-date {
+  display: inline-block;
+  margin-right: 30px;
+}
+
 .fa-trash {
-  margin-left: 40px;
+  display: inline-block;
 }
 
 .new-review-form-title {
