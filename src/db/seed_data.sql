@@ -10,10 +10,10 @@ VALUES
 INSERT INTO
   users (name, email, password)
 VALUES
-  ('Tommy', 'tommy@vinyl.com', 'theoldest'),
-  ('Dick', 'dick@vinyl.com', 'highcommander'),
-  ('Harry', 'harry@vinyl.com', 'transmitter'),
-  ('Sally', 'sally@vinyl.com', 'lieutenant')
+  ('Tommy Solomon', 'tommysolomon@3rdrock.com', 'theoldest'),
+  ('Dick Solomon', 'dicksolomon@3rdrock.com', 'highcommander'),
+  ('Harry Solomon', 'harrysolomon@3rdrock.com', 'transmitter'),
+  ('Sally Solomon', 'sallysolomon@3rdrock.com', 'lieutenant')
 ;
 
 INSERT INTO
