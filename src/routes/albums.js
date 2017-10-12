@@ -6,11 +6,23 @@ albums.get('/:albumID', (req, res) => {
 
   db.getAlbumsByID(albumID, (error, albums) => {
     if (error) {
-      res.status(500).render('error', {error})
+
+      res.status(500).render('error', {error, user: req.session.user})
+
     } else {
+
       const album = albums[0]
+
       db.getReviewsByAlbum(album.id, (error, reviews) => {
-        res.render('album', {album, reviews, user: req.session.user})
+        if (error) {
+
+          res.status(500).render('error', {error, user: req.session.user})
+
+        } else {
+
+          res.render('album', {album, reviews, user: req.session.user})
+
+        }
       })
     }
   })
@@ -21,10 +33,15 @@ albums.get('/:albumID/reviews/new', (req, res) => {
 
   db.getAlbumsByID(albumID, (error, albums) => {
     if (error) {
-      res.status(500).render('error', {error})
+
+      res.status(500).render('error', {error, user: req.session.user})
+
     } else {
+
       const album = albums[0]
-      res.render('new_review', {album, user: req.session.user})
+
+      res.render('new_review', {album, user: req.session.user, message: ''})
+
     }
   })
 })
@@ -37,25 +54,35 @@ albums.post('/:albumID/reviews/new', (req, res) => {
     author: req.session.user.id,
     album: req.params.albumID,
   }
-  
-  db.addReview(reviewData, (error, review) => {
-    if (error) {
-      res.status(500).render('error', {error})
-    } else {
-      console.log('Is this the new reviewwww????', review)
 
-      console.log('am I getting the review data at least????', reviewData)
-      res.redirect(`/albums/${albumID}`)
-    }
-  })
+  if(!reviewData.content) {
+    db.getAlbumsByID(albumID, (error, albums) => {
+      if (error) {
 
+        res.status(500).render('error', {error, user: req.session.user})
 
+      } else {
+
+        const album = albums[0]
+
+        res.render('new_review', {album, user: req.session.user, message: 'Cannot submit a blank review'})
+
+      }
+    })
+    
+  } else {
+    db.addReview(reviewData, (error, review) => {
+      if (error) {
+
+        res.status(500).render('error', {error})
+
+      } else {
+
+        res.redirect(`/albums/${albumID}`)
+
+      }
+    })
+  }
 })
-
-//Use a delete review query in a post route here::::
-
-
-
-
 
 module.exports = albums

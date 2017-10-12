@@ -85,6 +85,15 @@ function signUp(userData, cb) {
             *`, [userData.name, userData.email, userData.password], cb)
 }
 
+function checkIfExists(userData, cb) {
+  _query(`SELECT
+            *
+          FROM
+            users
+          WHERE
+            email = $1`, [userData.email], cb)
+}
+
 function signIn(userData, cb) {
   _query(`SELECT
             *
@@ -120,5 +129,6 @@ module.exports = {
   getUsersByID,
   getReviewsByUser,
   signUp,
+  checkIfExists,
   signIn
 }

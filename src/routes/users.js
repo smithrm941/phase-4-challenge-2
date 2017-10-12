@@ -6,16 +6,26 @@ users.get('/:userID', (req, res) => {
 
   db.getUsersByID(userID, (error, users) => {
     if (error) {
-      res.status(500).render('error', {error})
+
+      res.status(500).render('error', {error, user: req.session.user})
+
     } else {
+
       const profile = users[0]
+
       db.getReviewsByUser(profile.id, (error, reviews) => {
-        res.render('user', {profile, reviews, user: req.session.user})
+        if (error) {
+
+          res.status(500).render('error', {error, user: req.session.user})
+
+        } else {
+
+          res.render('user', {profile, reviews, user: req.session.user})
+
+        }
       })
     }
   })
 })
-
-//Use a delete review query in a post route here::::
 
 module.exports = users

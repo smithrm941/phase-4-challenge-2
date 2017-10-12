@@ -121,3 +121,7 @@ li {
 .authentication-button {
   margin-left: 182px;
 }
+
+.message {
+  color: red;
+}
